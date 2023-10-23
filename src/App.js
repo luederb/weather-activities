@@ -1,15 +1,16 @@
 import { Fragment } from "react";
 import "./App.css";
-import ActvityForm from "./components/ActvityForm/ActivityForm.js";
-
+import ActivityForm from "./components/ActvityForm/ActivityForm.js";
+import { useState } from "react";
 console.clear();
 
-function App() {
+function App() { const [activities, setActivities] = useState([]);
+  console.log("event name:", activities);
   return (
     <Fragment>
-      <ActvityForm />
+      <ActivityForm activities={activities} setActivities={setActivities}/>
     </Fragment>
-  );
-}
 
+  ); 
+}
 export default App;
