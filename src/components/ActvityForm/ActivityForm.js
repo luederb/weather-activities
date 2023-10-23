@@ -1,18 +1,27 @@
 import { useState } from "react";
+import { uid } from "uid";
 
-export default function ActvityForm() {
+export default function ActivityForm() {
   const [isChecked, setIsChecked] = useState(false);
+  const [activities, setActivities] = useState([]);
+
+  const handleCheckBox = () => {
+    setIsChecked(!isChecked);
+  };
+
   function onAddActivity(event) {
     event.preventDefault();
-    setIsChecked(isChecked);
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    // const handleCheckBox = () => {
-    //   setIsChecked(!isChecked);
-    // };
-    console.log("event name:", data.isForGoodWeather);
-    console.log("event good weather:", data.isForGoodWeather.checked);
+    setActivities([
+      ...activities,
+      { ...data, id: uid(), goodWeather: isChecked },
+    ]);
   }
+
+  console.log("event name:", activities);
+  console.log("event good weather:", isChecked);
+
   return (
     <section>
       <form onSubmit={onAddActivity}>
@@ -33,9 +42,9 @@ export default function ActvityForm() {
 
           <input
             type="checkbox"
+            onChange={handleCheckBox}
             name="isForGoodWeather"
             id="isForGoodWeather"
-            checked
           ></input>
         </div>
         <button type="submit">Submit</button>
@@ -43,4 +52,5 @@ export default function ActvityForm() {
     </section>
   );
 }
+
 console.log("hallo welt!");

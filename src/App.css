@@ -27,7 +27,7 @@ input {
 form {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2crem;
   background: #f1f1f1;
   padding: 3rem;
 }
