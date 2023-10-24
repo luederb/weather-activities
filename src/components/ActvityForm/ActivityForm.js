@@ -33,7 +33,7 @@ export default function ActivityForm({ handleAddActivity }) {
         </div>
 
         <div>
-          <label htmlFor="goodWeather">Good-weather activity: </label>
+          <label htmlFor="isForGoodWeather">Good-weather activity: </label>
 
           <input
             type="checkbox"

@@ -16,9 +16,9 @@ function App() {
   });
   const [weather, setWeather] = useState();
 
-  const filteredActivities = weather
-    ? activities.filter((activity) => activity.goodWeather === true)
-    : activities.filter((activity) => activity.goodWeather === false);
+  const filteredActivities = activities.filter(
+    (activity) => activity.goodWeather === weather
+  );
 
   useEffect(() => {
     async function fetchWeather() {
