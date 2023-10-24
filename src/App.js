@@ -12,7 +12,7 @@ function App() {
   const [activities, setActivities] = useLocalStorageState("activities", {
     defaultValue: [],
   });
-  const [weather, setWeather] = useState();
+  const [weather, setWeather] = useState([]);
 
   const filteredActivities = activities.filter(
     (activity) => activity.goodWeather === weather
@@ -23,7 +23,7 @@ function App() {
       const response = await fetch(URL);
       const data = await response.json();
       console.log("fetched Weather:", data);
-      setWeather(data.isGoodWeather);
+      setWeather(data);
     }
     fetchWeather();
   }, []);

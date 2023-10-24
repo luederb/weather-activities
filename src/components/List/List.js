@@ -1,9 +1,12 @@
-export default function List({ filteredActivities, isGoodWeather }) {
-  // console.log("Filtered activities: ", filteredActivities);
+export default function List({ filteredActivities, weather }) {
+  console.log("weather-object: ", weather);
   return (
     <>
+      <h1>
+        {weather.condition} {weather.temperature} °C
+      </h1>
       <h2>
-        {isGoodWeather
+        {weather.isGoodWeather
           ? "The weather is awesome! Go outside and:"
           : "Bad weather outside! Here`s what you can do:"}
       </h2>
