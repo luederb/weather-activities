@@ -4,23 +4,25 @@ import ActivityForm from "./components/ActvityForm/ActivityForm.js";
 import List from "./components/List/List.js";
 import useLocalStorageState from "use-local-storage-state";
 import { uid } from "uid";
+console.clear();
 
 function App() {
+  const isGoodWeather = false;
+
   const [activities, setActivities] = useLocalStorageState("activities", {
     defaultValue: [],
-  });
-
-  console.log("event name:", activities);
-  function handleAddActivity(data, isChecked) {
+  }); 
+  const filteredActivities = isGoodWeather ? activities.filter((activity) =>
+   activity.goodWeather === true): activities.filter((activity) => activity.goodWeather === false);
+  function handleAddActivity(data, isChecked){
     setActivities([
       ...activities,
       { ...data, id: uid(), goodWeather: isChecked },
     ]);
   }
-
   return (
     <Fragment>
-      <List activities={activities} />
+      <List filteredActivities={filteredActivities} isGoodWeather={isGoodWeather}/>
       <ActivityForm handleAddActivity={handleAddActivity} />
     </Fragment>
   );
