@@ -1,21 +1,14 @@
-import { useState } from "react";
-
 export default function ActivityForm({ handleAddActivity }) {
-  const [isChecked, setIsChecked] = useState(false);
-
-  const handleCheckBox = () => {
-    setIsChecked(!isChecked);
-  };
   function onAddActivity(event) {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
-    handleAddActivity(data, isChecked);
+    const newActivity = {
+      name: event.target.elements.name.value,
+      isGoodWeather: event.target.elements.isForGoodWeather.checked,
+    };
+    handleAddActivity(newActivity);
     event.target.reset();
     event.target.elements.name.focus();
   }
-
-  // console.log("event good weather:", isChecked);
 
   return (
     <section>
@@ -23,7 +16,6 @@ export default function ActivityForm({ handleAddActivity }) {
         <h1>Add new activity:</h1>
         <div>
           <label htmlFor="name">Name: </label>
-
           <input
             id="name"
             type="text"
@@ -31,13 +23,10 @@ export default function ActivityForm({ handleAddActivity }) {
             placeholder="enter your activity"
           ></input>
         </div>
-
         <div>
           <label htmlFor="isForGoodWeather">Good-weather activity: </label>
-
           <input
             type="checkbox"
-            onChange={handleCheckBox}
             name="isForGoodWeather"
             id="isForGoodWeather"
           ></input>
@@ -47,5 +36,3 @@ export default function ActivityForm({ handleAddActivity }) {
     </section>
   );
 }
-
-console.log("hallo welt!");
