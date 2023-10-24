@@ -1,3 +1,4 @@
+import "./ActivityForm.css";
 export default function ActivityForm({ handleAddActivity }) {
   function onAddActivity(event) {
     event.preventDefault();

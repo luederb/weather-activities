@@ -1,5 +1,14 @@
-export default function List({ filteredActivities, weather }) {
-  console.log("weather-object: ", weather);
+import "./List.css";
+export default function List({
+  filteredActivities,
+  weather,
+  handleClearActivities,
+}) {
+  function onClearActivites(event) {
+    event.preventDefault();
+    const clearActivity = "hallo";
+    handleClearActivities(clearActivity);
+  }
   return (
     <>
       <h1>
@@ -12,9 +21,21 @@ export default function List({ filteredActivities, weather }) {
       </h2>
       <ul>
         {filteredActivities.map((activity) => (
-          <li key={activity.id}>{activity.name}</li>
+          <li key={activity.id}>
+            {activity.name}
+            <button>X</button>
+          </li>
         ))}
       </ul>
+      <button type="button" onClick={onClearActivites}>
+        Clear all activites
+      </button>
+      <button type="button" onClick={onClearActivites}>
+        Clear all good weather activites
+      </button>
+      <button type="button" onClick={onClearActivites}>
+        Clear all bad weather activites
+      </button>
     </>
   );
 }
