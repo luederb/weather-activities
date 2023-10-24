@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { uid } from "uid";
 
-export default function ActivityForm({activities, setActivities}) {
+export default function ActivityForm({ handleAddActivity }) {
   const [isChecked, setIsChecked] = useState(false);
-  
 
   const handleCheckBox = () => {
     setIsChecked(!isChecked);
@@ -12,16 +10,11 @@ export default function ActivityForm({activities, setActivities}) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    setActivities([
-      ...activities,
-      { ...data, id: uid(), goodWeather: isChecked },
-    ]);
+    handleAddActivity(data, isChecked);
     event.target.reset();
     event.target.elements.name.focus();
   }
- 
 
-  
   console.log("event good weather:", isChecked);
 
   return (
