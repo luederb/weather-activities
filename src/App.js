@@ -7,14 +7,15 @@ import { uid } from "uid";
 console.clear();
 
 function App() {
-  const isGoodWeather = false;
+  const isGoodWeather = true;
 
   const [activities, setActivities] = useLocalStorageState("activities", {
     defaultValue: [],
-  }); 
-  const filteredActivities = isGoodWeather ? activities.filter((activity) =>
-   activity.goodWeather === true): activities.filter((activity) => activity.goodWeather === false);
-  function handleAddActivity(data, isChecked){
+  });
+  const filteredActivities = isGoodWeather
+    ? activities.filter((activity) => activity.goodWeather === true)
+    : activities.filter((activity) => activity.goodWeather === false);
+  function handleAddActivity(data, isChecked) {
     setActivities([
       ...activities,
       { ...data, id: uid(), goodWeather: isChecked },
@@ -22,7 +23,10 @@ function App() {
   }
   return (
     <Fragment>
-      <List filteredActivities={filteredActivities} isGoodWeather={isGoodWeather}/>
+      <List
+        filteredActivities={filteredActivities}
+        isGoodWeather={isGoodWeather}
+      />
       <ActivityForm handleAddActivity={handleAddActivity} />
     </Fragment>
   );
