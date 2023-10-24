@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-export default function ActivityForm({handleAddActivity}) {
+export default function ActivityForm({ handleAddActivity }) {
   const [isChecked, setIsChecked] = useState(false);
-  
 
   const handleCheckBox = () => {
     setIsChecked(!isChecked);
@@ -11,14 +10,12 @@ export default function ActivityForm({handleAddActivity}) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-   handleAddActivity(data, isChecked);
+    handleAddActivity(data, isChecked);
     event.target.reset();
     event.target.elements.name.focus();
   }
- 
 
-  
-  console.log("event good weather:", isChecked);
+  // console.log("event good weather:", isChecked);
 
   return (
     <section>
